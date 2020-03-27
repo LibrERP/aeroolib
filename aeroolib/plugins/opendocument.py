@@ -79,13 +79,15 @@ GENSHI_EXPR = re.compile(r'''
         .*                                   # or anything else
         ''', re.VERBOSE)
 
-EXTENSIONS = {'image/png': 'png',
-              'image/jpeg': 'jpg',
-              'image/bmp': 'bmp',
-              'image/gif': 'gif',
-              'image/tiff': 'tif',
-              'image/xbm': 'xbm',
-             }
+EXTENSIONS = {
+    'image/png': 'png',
+    'image/jpeg': 'jpg',
+    'image/bmp': 'bmp',
+    'image/gif': 'gif',
+    'image/tiff': 'tif',
+    'image/xbm': 'xbm',
+    'image/webp': 'webp'
+}
 
 AEROO_URI = 'http://alistek.com/'
 GENSHI_URI = 'http://genshi.edgewall.org/'
@@ -1096,6 +1098,8 @@ class OOSerializer:
                     guess_type = 'float'
                     tag.attrib['{%s}value' % namespaces['office']] = tag[0].text
                     # AKRETION HACK https://github.com/aeroo/aeroolib/issues/7
+                    if not 'calcext' in namespaces:
+                        namespaces['calcext'] = 'urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0'
                     tag.attrib['{%s}value-type' % namespaces['calcext']] = guess_type
                 except (ValueError,TypeError):
                     guess_type = 'string'
