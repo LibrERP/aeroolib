@@ -14,4 +14,4 @@ and report together, find reports by mimetypes/name/python objects.
 from aeroolib.reporting import MIMETemplateLoader, ReportRepository, Report
 import plugins
 
-__version__ = '1.2.0'
+__version__ = '1.2.0a'
